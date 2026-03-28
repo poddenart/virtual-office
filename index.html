@@ -1000,13 +1000,24 @@ document.querySelectorAll('.faq__q').forEach(btn => {
 });
 
 // Form submit
-function submitForm() {
+async function submitForm() {
   const name  = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const need  = document.getElementById('need').value;
+
   if (!name || !email) {
     alert('Please fill in your name and email.');
     return;
   }
+
+  await fetch('https://script.google.com/macros/s/AKfycbwo6jUdAUaLi1K_xHFf0vVjMfFfPl8nai_nNPmYAm0B0rmtAVUhRTSwynI0furkaPkz/exec', {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email, phone, need })
+  });
+
   document.getElementById('form-fields').style.display = 'none';
   document.getElementById('form-success').style.display = 'block';
 }
