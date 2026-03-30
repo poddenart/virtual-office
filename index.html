@@ -1044,7 +1044,8 @@ async function submitForm() {
   });
 
   document.getElementById('form-fields').style.display = 'none';
-  document.getElementById('form-success').style.display = 'block';
+document.getElementById('form-success').style.display = 'block';
+if (typeof fbq !== 'undefined') fbq('track', 'Lead');
 }
 
 // Smooth scroll for anchor links
